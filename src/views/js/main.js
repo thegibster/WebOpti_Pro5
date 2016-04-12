@@ -451,11 +451,19 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
+    /*The ranPizCon variable is used to create a DRY effect
+      Reading of articles indicated that getElementsByClassName is cheaper than using a querying selector
+      Every pizza at any given time is the same size therefore dx can be viewed as inherently being a constant
+      although not outright.
+      newwidth changes the pizza images size and if it changes all of them similary then that creates
+      the effect of newwidth acting as a constant and not needing recreation in the for loop.
+    */
     var ranPizCon=document.getElementsByClassName("randomPizzaContainer") ;
      var dx = determineDx(ranPizCon[1], size);
       var newwidth = (ranPizCon[1].offsetWidth + dx) + 'px';
     for (var i = 0; i < ranPizCon.length; i++) {
-
+      /*Applying the style afterwards was touched upon in the lecture videos on paint cost
+      calculate then apply */
       ranPizCon[i].style.width = newwidth;
     }
   }
@@ -505,9 +513,18 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.getElementsByClassName('mover');
+  var items = document.getElementsByClassName('mover');// Cheaper DOM manipulater than query selector
   var tempScr =document.body.scrollTop / 1250 ;
   var arrPhase=[];
+  /*
+  Using the timesline , this function is the most expensive in use.
+  document.getElementsByClassName('mover'); becomes the variable items
+    in order to keep code DRY. tempScr is a constant and therefore needs not
+    be recreated on every loop. arrPhase I used after using a console.log to see
+    what values were printed, 5 repeating values appeared and so the use of five instrad of all
+    on a repetative loop seems more efficient. Choose 20 since it related to the 20 used in animating
+    the pizzas later down in the code.
+  */
   for(var i=0;i<20;i++){
     arrPhase[i]= Math.sin((tempScr) + (i % 5));
   }
@@ -532,6 +549,8 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  // Reduced i <200 to i <20 , I changed the number around and 20 seems to cause no differnce in amount of pizzas
+  //shown at any given time and also increases speed as time is spent on animating 20 vs 200 pizza images
   for (var i = 0; i < 20; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
