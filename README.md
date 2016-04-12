@@ -16,9 +16,13 @@ $ git clone https://github.com/thegibster/WebOpti_Pro5.git
 
 ### Optimizations on views/js/main.js for pizza.html
 
-1. Reduced number of pizza elements being drawn from 200 to 20 with negligible differnece in actual amount painted to screen.
-2. Reduce repetitive code using DRY methodologies to make efficient use of variable allocations
-3. Placed style.css code inline of pizza.html and removed the orignal css link from the header. Moved all styles scripts to just before the body tag's close.
+1.Reduced number of pizza elements being drawn from 200 to a variable number with negligible differnece in actual amount painted to screen. Lines 481-486 main.js created a constant from the window height to use for generating a loop number.
+2.Reduce repetitive code using DRY methodologies to make efficient use of variable allocations
+3.Placed style.css code inline of pizza.html and removed the orignal css link from the header. Moved all styles scripts to just before the body tag's close.
+4.Line 562 in main.js, var movingPizzas = document.getElementById('movingPizzas1'); used to reduced calls to the DOM for the same object with Id ('movingPizzas1').
+5.var elem on line 556 main.js is moved out of the following loop so that it is instanciated once outside .
+6.Added use of strict in functions calls.
+7.Production code is minified. To examine code use src folder as dist is the same just in compressed mode.
 
 
 
