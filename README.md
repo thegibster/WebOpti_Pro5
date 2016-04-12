@@ -23,6 +23,7 @@ $ git clone https://github.com/thegibster/WebOpti_Pro5.git
 5.var elem on line 556 main.js is moved out of the following loop so that it is instanciated once outside .
 6.Added use of strict in functions calls.
 7.Production code is minified. To examine code use src folder as dist is the same just in compressed mode.
+8.Added transform z index in the css to make browser treat the object as a seperate layer requring animation and triggering GPU acceleration.
 
 
 
