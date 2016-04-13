@@ -24,8 +24,9 @@ $ git clone https://github.com/thegibster/WebOpti_Pro5.git
 6.Added use of strict in functions calls.
 7.Production code is minified. To examine code use src folder as dist is the same just in compressed mode.
 8.Added transform z index in the css to make browser treat the object as a seperate layer requring animation and triggering GPU acceleration.
-
-
+9. Changed items[i].style.left = items[i].basicLeft + 100 * arrPhase[i] + 'px';  to 
+items[i].style.left = items[i].basicLeft + 100 * arrPhase[i % 5] + 'px';  line 574
+10. Changed for (var i = 0; i < 20; i++) to for (var i = 0; i < 5; i++) 
 
 
 

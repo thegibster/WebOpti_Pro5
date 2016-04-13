@@ -566,13 +566,13 @@ function updatePositions() {
       on a repetative loop seems more efficient. Choose 20 since it related to the 20 used in animating
       the pizzas later down in the code.
     */
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 5; i++) { //Change to five from previous of 20
         arrPhase[i] = Math.sin((tempScr) + (i % 5));
     }
     var itLen = items.length; //Save length to a variable to eliminate recreating the constant value on loop
     for (var i = 0; i < itLen; i++) {
-        items[i].style.left = items[i].basicLeft + 100 * arrPhase[i] + 'px';
-    }
+        items[i].style.left = items[i].basicLeft + 100 * arrPhase[i % 5] + 'px';
+    } // mod 5 added to fix the pizza location and moving issue
 
     // User Timing API to the rescue again. Seriously, it's worth learning.
     // Super easy to create custom metrics.
@@ -593,7 +593,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var cols = 8;
     var s = 256;
     var screenMoRatio = (window.screen.height / s); //Returns a psuedo length to use in the for loop for pizza image animations
-    screenMoRatio *= cols
+    screenMoRatio *= cols;
     console.log(screenMoRatio);
     // Reduced i <200 to i <20 , I changed the number around and 20 seems to cause no differnce in amount of pizzas
     //shown at any given time and also increases speed as time is spent on animating 20 vs 200 pizza images
